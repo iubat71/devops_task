@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block heading %} Package Refill Form {% endblock %}
+{% block refill %}
+
+<div class="row">
+  <form method="POST" id="pForm" data-product-url="{% url 'load_package' %}" class="form-horizontal" role="form">
+    {% csrf_token %}
+    <h3 class="d-flex justify-content-center mt-5">Package Refill Form </h3>
+
+    <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">Employee ID</label>
+      {{ps.e_id}}
+    </div>
+
+
+
+    <div class="mb-3"><label for="formGroupExampleInput" class="form-label">Select Packages</label>
+      {{ps.package}}
+
+    </div>
+
+    <div class="mb-3" id="pack">
+      <label for="formGroupExampleInput2" id="pack" class="form-label">Package Description</label>
+      <input type="text" class='form-control ' placeholder="{{cp.package.detail}}" value="{{cp.package.detail}}">
+
+    </div>
+    <div class="mb-3" id="main">
+
+    </div>
+    <div class="mb-3">
+
+      <label for="formGroupExampleInput2" class="form-label"> <strong id="result">Total Price
+        </strong>
+      </label>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Refill</button>
+  </form>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $("#packages").change(function () {
+    var url = $("#pForm").attr("data-product-url");
+    var id = $(this).val();
+
+    $.ajax({
+      url: url,
+      data: {
+        'id': id
+      },
+      success: function (data) {
+        $("#pack").html(data);
+      }
+    });
+
+  });
+</script>
+{% endblock %}

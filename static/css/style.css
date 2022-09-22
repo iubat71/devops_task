@@ -1,0 +1,15 @@
+#package {
+    height: 300px;
+    border-radius: 7px;
+    background-color: rgb(156, 168, 179);
+}
+
+#main-content {
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+
+#menubar {
+    float: right;
+    /* margin-left: 200px; */
+}

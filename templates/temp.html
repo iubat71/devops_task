@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block heading %} Product Refill Form {% endblock %}
+{% block product %}
+
+
+<div class="row">
+    <form method="POST">
+        {% csrf_token %}
+        <h3 class="d-flex justify-content-center mt-5">Product Refill Form </h3>
+
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Employee ID</label>
+            <input type="text" class="form-control" id="formGroupExampleInput" name="e_id" placeholder="Employee ID">
+        </div>
+
+
+
+        <div class="mb-3"><label for="formGroupExampleInput" class="form-label">Select Product</label>
+
+            <select class="form-select" name="c_name" aria-label="Default select example">
+
+                <option selected>Choose..</option>
+                {% for p in p_list %}
+
+                <option value="{{p.name}}">{{p.name}}</option>
+
+
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Refill Quantity</label>
+            <input type="text" class="form-control" id="formGroupExampleInput2" name="quantity"
+                placeholder="Enter the Refill Quantity">
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label"><strong>Total Price :100tk</strong></label>
+
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Refill Quantity:</label> 5
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Unit Price of Selected Product :</label> 10 tk
+        </div>
+
+        <button type="submit" class="btn btn-primary">Refill</button>
+    </form>
+
+</div>
+
+
+{% endblock %}
+
+
+
+
+<div class="row">
+    <form action="" method="post">
+        {% csrf_token %}
+        <h3 class="d-flex justify-content-center mt-5">Package Refill Form </h3>
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Employee ID</label>
+            <!-- <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Employee ID">
+         -->
+            {{pack.e_id}}
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Select Packages</label>
+            <!-- <select class="form-select" aria-label="Default select example">
+          <option selected>Choose..</option>
+          {% for pz in pz %}
+          <option value="{{pz.id}}">{{pz.name}}</option>
+          {% endfor %} -->
+            {{pack.package}}
+
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label"></label>
+            <!-- <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+         -->
+            {{pack.description}}
+
+        </div>
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Total Price :</label> 100tk
+        </div>
+
+        <button type="button" class="btn btn-primary">Refill</button>
+    </form>
+
+</div>

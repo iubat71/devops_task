@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block heading %} Product Refill Form {% endblock %}
+{% block product %}
+
+
+<div class="row">
+
+  <form method="POST" id="pForm" data-product-url="{% url 'load_product' %}" class="form-horizontal" role="form">
+    {% csrf_token %}
+
+    <h3 class="d-flex justify-content-center mt-5">Product Refill Form </h3>
+
+    <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">Employee ID</label>
+      {{ps.e_id}}
+    </div>
+
+
+
+    <div class="mb-3" id="mm"><label for="formGroupExampleInput" class="form-label">Select Product</label>
+      {{ps.product}}
+
+    </div>
+
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label" id="refill">Refill Quantity</label>
+
+      {{ps.quantity}}{% for p in p %} {{p.quantity}}{% endfor %}
+
+    </div>
+
+    <div class="mb-3">
+
+      <label for="formGroupExampleInput2" class="form-label"><strong id="">Total Price :{{get_total}}</strong></label>
+
+
+    </div>
+    <!-- <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label" id="result">Refill
+        Quantity: 5</label>
+    </div> -->
+    <div class="mb-3" id="main">
+
+    </div>
+    <!-- <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Unit Price of Selected Product
+        :</label> 10 tk
+    </div> -->
+
+
+    <button type="submit" class="btn btn-primary">Refill</button>
+  </form>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $("#product").change(function () {
+    var url = $("#pForm").attr("data-product-url");
+    var id = $(this).val();
+
+    $.ajax({
+      url: url,
+      data: {
+        'id': id
+      },
+      success: function (data) {
+        $("#main").html(data);
+      }
+    });
+
+  });
+</script>
+{% endblock %}

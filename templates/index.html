@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block index %}
+<div class="container mt-5" id="package">
+
+    <div class="row mx-auto ">
+
+        <div class="col-12 mx-auto mt-5">
+
+
+            <div class="d-grid gap-2 col-3 mx-auto " id="main-content">
+                <a class="btn btn-success " href="{% url 'product' %}">Refill Product</a>
+                {% if r %}
+                <a class="btn btn-success " href="{% url 'prefill' %}">Refill Package</a>
+                {% else %}
+                <a class="btn btn-success disabled " href="{% url 'prefill' %}">Refill Package</a>
+
+                {% endif %}
+                <a class="btn btn-success " href="{% url 'card' %}">Card Status</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

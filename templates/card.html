@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block heading %} Product Refill Form {% endblock %}
+{% block card %}
+
+<div class="container-fliud ">
+  <div class="card mt-5">
+    {%for pr in pr %}
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item  disabled  ">
+
+        <div class="row ">
+          <div class="col-9">
+            {{pr.package.name}}
+          </div>
+          <div class="col-3">Refill time :
+            {{pr.created}}
+          </div>
+          <div class="col-12"><small> Status:{{pr.status}}</small> </div>
+        </div>
+      </li>
+    </ul>
+    {% endfor %}
+  </div>
+
+</div>
+
+
+{% endblock %}
